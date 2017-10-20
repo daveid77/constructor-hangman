@@ -17,7 +17,7 @@ var phrases = [
     'Souls of Mischief',
     'The Coup',
     'Del the Funky Homosapien',
-    'Wu-Tang Clan',
+    'WuTang Clan',
     'Lupe Fiasco',
     'Atmosphere',
     'Brand Nubian',
