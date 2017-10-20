@@ -14,9 +14,16 @@ npm install
 
 * `node game.js`
 
-## Misc Notes
+## Little Extras
 
 * Letter validation built in.  Won't accept integers or multi-character strings. 
+* Capitalization of user inputted letter doesn't effect comparisons or display.
+* Choice to play more offered to user, rather than auto game restart as in demo GIF.
+
+## Shortcomings
+
+* No prototypes used, as per assignment requirements, although updateDisplayString() sort of acts like a prototype, I think. 
+* Doesn't check for repeated user entries (yet?).
 
 ## Author
 
