@@ -22,7 +22,7 @@ var phrases = [
     'Atmosphere',
     'Brand Nubian',
     'Cypress Hill',
-    '2Pac',
+    'Tupac Shakur',
     'Queen Latifah',
     'Digital Underground',
     'Boogie Down Productions'
