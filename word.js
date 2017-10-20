@@ -1,3 +1,11 @@
+function ArtistName(name) {
+  this.name = name;
+}
+
+ArtistName.prototype.printInfo = function() {
+        console.log('Hip Hop Greats: ' + this.name);
+      };
+
 var phrases = [
     'Grandmaster Flash and The Furious Five', 
     'Afrika Bambaataa',
@@ -27,5 +35,9 @@ var phrases = [
     'Digital Underground',
     'Boogie Down Productions'
 ];
+
+var artistList = new ArtistName(phrases);
+
+// artistList.printInfo();
 
 module.exports = phrases;

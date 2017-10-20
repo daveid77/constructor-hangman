@@ -159,13 +159,43 @@ function playAgain() {
       name: 'restart',
       message: 'Do you want to play more?',
       type: 'list',
-      choices: ['Yes, I do', 'No thanks']
+      choices: ['Yes, I do', 'No, thanks']
     }
   ];
 
   inquirer.prompt(question).then(function(answer) {
     if (answer.restart === 'Yes, I do') {
       game.secondRun();
+    } else {
+      printArtists();
+    }
+  });
+
+}
+
+function printArtists() {
+
+  var question = [
+    {
+      name: 'artists',
+      message: 'Would you like to see the full list of hip hop greats?',
+      type: 'list',
+      choices: ['Yes, I would', 'No, thanks']
+    }
+  ];
+
+  inquirer.prompt(question).then(function(answer) {
+    if (answer.artists === 'Yes, I would') {
+      /* 
+        I wanted to invoke ArtistName.prototype.printInfo() from word.js, 
+        but I don't know how to do that: 
+        
+        var artistList = new ArtistName(phrases);
+        artistList.printInfo();
+
+      */
+      console.log(word);
+      return false;
     } else {
       return false;
     }

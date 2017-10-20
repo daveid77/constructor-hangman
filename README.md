@@ -22,8 +22,8 @@ npm install
 
 ## Shortcomings
 
-* No prototypes used, as per assignment requirements, although updateDisplayString() sort of acts like a prototype, I think. 
-* Doesn't check for repeated user entries (yet?).
+* No prototypes used, as per assignment requirements, although updateDisplayString() sort of acts like a prototype, I think.  Tried to call a simply word.js prototype from game.js but couldn't figure out how to do it.  It would have run if user chooses not to play any more but then did choose to see the full list of artist names. Instead, I console.log the entire array there. 
+* Doesn't check for repeated user entries (yet?).  My original hangman game did give users an error if they repeated letter guesses. 
 
 ## Author
 
