@@ -4,67 +4,82 @@ var letter = require('./letter');
 
 // VARIABLES
 var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+var wordArr = [];
+var lettersArr = [];
 
 // MAIN GAME OBJECT
 var game = {
   initialize: function() {
-    var wordChoice = word[Math.floor(Math.random() * word.length)];
-    // console.log(wordChoice);
+    var newWord = word[Math.floor(Math.random() * word.length)];
+      console.log('newWord: ' + newWord);
+    lowerWord = newWord.toLowerCase();
+      // console.log('lowerWord: ' + lowerWord);
+    wordArr = lowerWord.split('');
+      // console.log(wordArr);
+    for (var i = 0; i < wordArr.length; i++) {
+      lettersArr.push(new letter(wordArr[i]))
+    }
+    this.buildDisplayString(lettersArr);
+  },
+  buildDisplayString: function(lettersArr) {
+    var displayString = '';
+    for (var i = 0; i<lettersArr.length; i++) {
+        if (lettersArr[i].isVisible) {
+            displayString += lettersArr[i].value;
+        } else {
+            displayString += '_';
+        }
+    }
+    console.log(displayString.split('').join(' ') + '\n');
+    userInput();
+    return displayString;
+  },
+  updateDisplayString: function() {
+    displayString = game.buildDisplayString(lettersArr);
+    // console.log(displayString);
+  },
+  compareLetters: function(letter) {
+    var match = wordArr.indexOf(letter);
+    if (match !== -1) {
+      console.log('\x1b[32m%s\x1b[0m', '\nCORRECT!!\n');
+    } else {
+      console.log('\x1b[31m%s\x1b[0m', '\nWrong. Try again.\n');
+      console.log('9 guesses remaining.');
+    }
+    game.revealLetter(letter);
+  }, 
+  revealLetter: function(letter) {
+    for (var i = 0; i < lettersArr.length; i++) {
+        if (letter.toLowerCase() === lettersArr[i].value.toLowerCase()) {
+            lettersArr[i].isVisible = true
+        }
+    }
+    game.updateDisplayString();
+  },
+  checkForWin: function() {
+    for (var i = 0; i < lettersArr.length; i++) {
+        if (!lettersArr[i].isVisible) {
+            return false;
+        }
+    }
+    return true;
   }
 }
+game.initialize();
 
 
-var wordTokens = word[0].split("");
-  // console.log(wordTokens);
+// game.updateDisplayString();
 
-var letters = []
+// console.log(displayString);
 
-for (var i=0; i< wordTokens.length; i++) {
-    letters.push(new letter(wordTokens[i]))
-}
+// game.revealLetter('a');
+// game.revealLetter('w');
 
-function buildDisplayString(letterArray) {
+// game.updateDisplayString();
 
-  var displayString = '';
-  for (var i=0; i<letterArray.length; i++) {
-      if (letterArray[i].isVisible) {
-          displayString += letterArray[i].value;
-      } else {
-          displayString += '_';
-      }
-  }
-  return displayString;
+// console.log(displayString);
 
-}
-
-var displayString = buildDisplayString(letters);
-
-updateDisplayString();
-
-function revealLetter(letter) {
-  for (var i=0; i < letters.length; i++) {
-      if (letter.toLowerCase() === letters[i].value.toLowerCase()) {
-          letters[i].isVisible = true;
-      }
-  }
-}
-
-function updateDisplayString() {
-  displayString = buildDisplayString(letters);
-}
-
-updateDisplayString();
-
-function checkForWin() {
-
-  for (var i=0; i < letters.length; i++) {
-      if (!letters[i].isVisible) {
-          return false;
-      }
-  }
-  return true;
-
-}
+// console.log(game.checkForWin());
 
 // INQUIRER USER INPUT 
 function userInput() {
@@ -88,10 +103,7 @@ function userInput() {
   ];
 
   inquirer.prompt(question).then(function(answer) {
-    console.log('\x1b[32m%s\x1b[0m', 'CORRECT!!');
-    console.log('\x1b[31m%s\x1b[0m', 'Wrong. Try again.');
-    //console.log(JSON.stringify(answer, null, '  '));
+    game.compareLetters(answer.letter);
   });
 
 }
-userInput();
