@@ -1,5 +1,3 @@
-console.log('word.js');
-
 var phrases = [
     'Grandmaster Flash and The Furious Five', 
     'Afrika Bambaataa',
